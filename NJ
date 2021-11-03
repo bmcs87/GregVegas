@@ -1,0 +1,29 @@
+#### Set Up
+# EDIT LOCATION FILE SAVED HERE (example: "C:/Users/resmi/Documents")
+setwd("C:/Users/resmi/Documents")
+
+##### Call your dataset
+vegas <- read.csv("Vegas.csv")
+attach(vegas)
+
+
+######check the class of the data
+class(PassengersNJ)
+class(GamblingNJ)
+
+#####change class of the data
+PassengersNJ <- as.numeric(PassengersNJ)
+GamblingNJ <- as.numeric(GamblingNJ)
+
+
+#####Plot to visually check for normality
+plot(GamblingNJ ~ PassengersNJ)
+
+#####Run Q-Q to check for normality
+qqnorm(PassengersNJ)
+qqline(PassengersNJ)
+
+
+####Run Regression
+VegasModel <- lm(GamblingNJ ~ PassengersNJ, data = vegas)
+summary(VegasModel)
